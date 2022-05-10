@@ -1,7 +1,7 @@
 HELP.md
-target/
-src/main/**/target/
-src/test/**/target/
+*/target/
+*/src/main/**/target/
+*/src/test/**/target/
 
 
 ### IntelliJ IDEA ###
@@ -9,4 +9,21 @@ src/test/**/target/
 *.iws
 *.iml
 *.ipr
+
+.DS_Store
+*/node_modules/
+*/dist/
+*/npm-debug.log*
+*/yarn-debug.log*
+*/yarn-error.log*
+*/package-lock.json
+*/tests/**/coverage/
+
+# Editor directories and files
+*/.idea
+*/.vscode
+*/*.suo
+*.ntvs*
+*.njsproj
+*.sln
 
