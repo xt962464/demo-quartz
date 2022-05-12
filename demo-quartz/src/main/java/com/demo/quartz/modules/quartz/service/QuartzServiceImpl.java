@@ -41,7 +41,7 @@ public class QuartzServiceImpl extends BaseServiceImpl<QuartzMapper, QuartzEntit
 
         IPage<QuartzEntity> page = baseMapper.selectPage(
                 PageUtils.initPage(queryParams),
-                getWrapper(queryParams).orderByDesc(QuartzEntity::getCreateTime)
+                getWrapper(queryParams).orderByDesc(QuartzEntity::getCreatedTime)
         );
         return getPageData(page, QuartzDTO.class);
     }
@@ -142,8 +142,8 @@ public class QuartzServiceImpl extends BaseServiceImpl<QuartzMapper, QuartzEntit
         if (dateTime != null && dateTime.size() > 0) {
             String startTime = dateTime.getString("startTime");
             String endTime = dateTime.getString("endTime");
-            wrapper.ge(StringUtils.isNotBlank(startTime), QuartzEntity::getCreateTime, startTime);
-            wrapper.le(StringUtils.isNotBlank(endTime), QuartzEntity::getCreateTime, endTime);
+            wrapper.ge(StringUtils.isNotBlank(startTime), QuartzEntity::getCreatedTime, startTime);
+            wrapper.le(StringUtils.isNotBlank(endTime), QuartzEntity::getCreatedTime, endTime);
         }
 
         // 任务名

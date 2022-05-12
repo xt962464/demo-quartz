@@ -29,7 +29,7 @@ public abstract class BasicDTO implements Serializable {
             pattern = "yyyy-MM-dd HH:mm:ss",
             timezone = "GMT+8"
     )
-    private Date createTime;
+    private Date createdTime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(
@@ -44,19 +44,8 @@ public abstract class BasicDTO implements Serializable {
         return this.id;
     }
 
-    public Date getCreateTime() {
-        return this.createTime;
-    }
-
     public void setId(final Long id) {
         this.id = id;
-    }
-
-    @JsonProperty(
-            access = Access.READ_ONLY
-    )
-    public void setCreateTime(final Date createTime) {
-        this.createTime = createTime;
     }
 
     public Date getModifyTime() {
@@ -65,5 +54,15 @@ public abstract class BasicDTO implements Serializable {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+    @JsonProperty(
+            access = Access.READ_ONLY
+    )
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 }

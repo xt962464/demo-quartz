@@ -21,20 +21,6 @@ public class QuartzVO extends BasicVO {
     private Long id;
 
     /**
-     * 创建时间
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "GMT+8")
-    private Date createdTime;
-
-    /**
-     * 更新时间
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "GMT+8")
-    private Date updatedTime;
-
-    /**
      * 任务名
      */
     private String name;
@@ -52,7 +38,7 @@ public class QuartzVO extends BasicVO {
     /**
      * 类型
      */
-    private String type;
+    private Integer type;
 
     /**
      * 时
@@ -78,6 +64,8 @@ public class QuartzVO extends BasicVO {
      * CRON表达式
      */
     private String cron;
+
+    private Boolean active;
 
     // ==================== 非持久 ====================
 

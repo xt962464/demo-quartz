@@ -20,19 +20,6 @@ public class QuartzDTO extends BasicDTO {
      */
     private Long id;
 
-    /**
-     * 创建时间
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "GMT+8")
-    private Date createdTime;
-
-    /**
-     * 更新时间
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "GMT+8")
-    private Date updatedTime;
 
     /**
      * 任务名
@@ -52,7 +39,7 @@ public class QuartzDTO extends BasicDTO {
     /**
      * 类型
      */
-    private String type;
+    private Integer type;
 
     /**
      * 时
@@ -78,6 +65,8 @@ public class QuartzDTO extends BasicDTO {
      * CRON表达式
      */
     private String cron;
+
+    private Boolean active;
 
     // ==================== 非持久 ====================
 

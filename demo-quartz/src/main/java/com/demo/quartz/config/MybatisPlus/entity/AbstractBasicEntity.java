@@ -22,13 +22,13 @@ public class AbstractBasicEntity<T extends Model<T>> extends Model<T> {
             timezone = "GMT+8"
     )
     @TableField(
-            value = "createTime",
+            value = "created_time",
             fill = FieldFill.INSERT
     )
-    private Date createTime;
+    private Date createdTime;
 
     @TableField(
-            value = "modifyTime",
+            value = "modify_time",
             fill = FieldFill.INSERT_UPDATE
     )
     private Date modifyTime;
@@ -40,17 +40,8 @@ public class AbstractBasicEntity<T extends Model<T>> extends Model<T> {
         return this.id;
     }
 
-    public Date getCreateTime() {
-        return this.createTime;
-    }
-
-
     public void setId(final Long id) {
         this.id = id;
-    }
-
-    public void setCreateTime(final Date createTime) {
-        this.createTime = createTime;
     }
 
     public Date getModifyTime() {
@@ -61,7 +52,12 @@ public class AbstractBasicEntity<T extends Model<T>> extends Model<T> {
         this.modifyTime = modifyTime;
     }
 
+    public Date getCreatedTime() {
+        return createdTime;
+    }
 
-
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
 }
 
