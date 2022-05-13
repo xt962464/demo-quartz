@@ -112,7 +112,11 @@ public class RearQuartzController {
         return new ResponseData();
     }
 
-    // ==================== 导出 ====================
+    @GetMapping("runOne/{id}")
+    public ResponseData<?> runOne(@PathVariable("id") Long id){
+
+        return new ResponseData<>().success();
+    }
 
 
     // ======================== 其他 ==============================

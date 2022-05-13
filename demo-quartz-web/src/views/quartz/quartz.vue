@@ -35,7 +35,8 @@
 
                     <el-table-column fixed label="序号" type="index" width="60"> </el-table-column>
 
-                    <el-table-column prop="createdTime" label="创建时间" header-align="center" align="center"></el-table-column>
+                    <el-table-column prop="createdTime" label="创建时间" header-align="center" align="center">
+                    </el-table-column>
 
                     <el-table-column prop="name" label="任务名" header-align="center" align="center"></el-table-column>
 
@@ -58,10 +59,20 @@
                     </el-table-column>
 
                     <el-table-column prop="cron" label="CRON表达式" header-align="center" align="center"></el-table-column> -->
-                    <el-table-column prop="description" label="描述" header-align="center" align="center"></el-table-column>
+                    <el-table-column prop="description" label="描述" header-align="center" align="center">
+                    </el-table-column>
+                    <el-table-column prop="active" label="状态" header-align="center" align="center">
+                        <template slot-scope="scope">
+                            <el-switch @change="activeChange(scope.row)" v-model="scope.row.active" :active-value="true"
+                                :inactive-value="false" active-text="启动" inactive-text="关闭">
+                            </el-switch>
+                        </template>
+                    </el-table-column>
 
                     <el-table-column fixed="right" fit label="操作" width="200">
                         <template slot-scope="scope">
+                            <el-button class="btn-clas" size="mini" type="primary"
+                                @click="runTask(scope.$index, scope.row)">执行一次</el-button>
                             <el-button class="btn-clas" size="mini" type="primary"
                                 @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                             <el-button class="btn-clas" size="mini" type="danger"
@@ -94,6 +105,7 @@ export default {
             deleteIdList: [],
             currentPage: 1,
             dataId: "",
+            loadingService: null,
             showAddOrUpdate: false,
             pageForm: {
                 type: 1,
@@ -127,6 +139,38 @@ export default {
                     this.loading = false;
                 })
                 .catch(() => {
+                    this.loading = false;
+                });
+        },
+        activeChange(data) {
+            console.log(data);
+            this.loadingService = this.$loading({
+                lock: true,
+                text: "Loading",
+                spinner: "el-icon-loading",
+                background: "rgba(0, 0, 0, 0.7)",
+            });
+            this.$http.put("/admin/quartz/update", data).then((resp) => {
+                this.$message({
+                    message: "启动成功",
+                    type: "success",
+                });
+                this.loadingService.close();
+            });
+        },
+        // 执行一次
+        runTask(index, row) {
+            this.$http
+                .get(`/admin/quartz/runOne/` + row.id)
+                .then((resp) => {
+                    if (resp.status == 200) {
+                        this.$message({
+                            type: "success",
+                            message: resp.msg,
+                        });
+                    }
+                })
+                .catch((err) => {
                     this.loading = false;
                 });
         },
